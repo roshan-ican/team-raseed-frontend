@@ -275,6 +275,10 @@ export default function ReceiptsList() {
                               {receipt.category}
                             </Badge>
                           </td> */}
+
+
+
+                          
                           <td className="p-3 sm:p-4">
                             <div className="flex gap-1">
                               <Button
