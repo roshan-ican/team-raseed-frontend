@@ -65,7 +65,7 @@ export default function ReceiptsList() {
 
   const filteredReceipts: ReceiptData[] = receipts
     .filter(
-      receipt =>
+      (receipt:any) =>
         (categoryFilter === 'all' || receipt.category === categoryFilter) &&
         (searchTerm === '' ||
           receipt.vendor?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -92,7 +92,7 @@ export default function ReceiptsList() {
 
   const handleSelectAll = () => {
     setSelectedReceipts(
-      selectedReceipts.length === filteredReceipts.length ? [] : filteredReceipts.map(r => r.id)
+      selectedReceipts.length === filteredReceipts.length ? [] : filteredReceipts.map((r:any) => r.id)
     );
   };
 
@@ -121,7 +121,7 @@ export default function ReceiptsList() {
       </div>
     ) : (
       <div>
-        {receipts.map(receipt => (
+        {receipts.map((receipt:any) => (
           <div key={receipt.receiptId}>{receipt.category}</div>
         ))}
       </div>
@@ -246,7 +246,7 @@ export default function ReceiptsList() {
                       </tr>
                     </thead>
                     <tbody>
-                      {filteredReceipts.map(receipt => (
+                      {filteredReceipts.map((receipt:any) => (
                         <tr key={receipt.receiptId} className="border-b hover:bg-muted">
                           <td className="p-3 sm:p-4">
                             <Checkbox
