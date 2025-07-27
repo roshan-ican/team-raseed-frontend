@@ -172,7 +172,7 @@ export default function ReceiptPage() {
                 <p className="text-gray-600 mb-1">Thank you for your purchase!</p>
                 <p className="text-xs text-gray-400 mt-3">
                   Receipt generated on{' '}
-                  {new Date(receipt.created_at._seconds * 1000).toLocaleString()} by Raseed AI.
+                  {new Date(receipt?.created_at?._seconds * 1000).toLocaleString()} by Raseed AI.
                 </p>
               </div>
             </div>

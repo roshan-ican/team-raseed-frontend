@@ -65,7 +65,7 @@ export default function ReceiptsList() {
 
   const filteredReceipts: ReceiptData[] = receipts
     .filter(
-      (receipt:any) =>
+      (receipt: any) =>
         (categoryFilter === 'all' || receipt.category === categoryFilter) &&
         (searchTerm === '' ||
           receipt.vendor?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -92,12 +92,14 @@ export default function ReceiptsList() {
 
   const handleSelectAll = () => {
     setSelectedReceipts(
-      selectedReceipts.length === filteredReceipts.length ? [] : filteredReceipts.map((r:any) => r.id)
+      selectedReceipts.length === filteredReceipts.length
+        ? []
+        : filteredReceipts.map((r: any) => r.id)
     );
   };
 
   const handleBulkDownload = () => {
-    alert(`Downloading ${selectedReceipts.length} receipts...`);
+    alert(`Downloading ${selectedReceipts.length} recipts...`);
   };
 
   const getCategoryColor = (category: string) => {
@@ -121,7 +123,7 @@ export default function ReceiptsList() {
       </div>
     ) : (
       <div>
-        {receipts.map((receipt:any) => (
+        {receipts.map((receipt: any) => (
           <div key={receipt.receiptId}>{receipt.category}</div>
         ))}
       </div>
@@ -246,7 +248,7 @@ export default function ReceiptsList() {
                       </tr>
                     </thead>
                     <tbody>
-                      {filteredReceipts.map((receipt:any) => (
+                      {filteredReceipts.map((receipt: any) => (
                         <tr key={receipt.receiptId} className="border-b hover:bg-muted">
                           <td className="p-3 sm:p-4">
                             <Checkbox
@@ -276,9 +278,6 @@ export default function ReceiptsList() {
                             </Badge>
                           </td> */}
 
-
-
-                          
                           <td className="p-3 sm:p-4">
                             <div className="flex gap-1">
                               <Button
@@ -292,7 +291,7 @@ export default function ReceiptsList() {
                                   onClick={() => goToReceipt(receipt.receiptId)}
                                 />
                               </Button>
-                              <Button
+                              {/* <Button
                                 variant="ghost"
                                 size="sm"
                                 className="h-8 w-8 p-0 hidden sm:inline-flex"
@@ -312,7 +311,7 @@ export default function ReceiptsList() {
                                 className="h-8 w-8 p-0 hidden sm:inline-flex"
                               >
                                 <Trash2 className="h-4 w-4" />
-                              </Button>
+                              </Button> */}
                             </div>
                           </td>
                         </tr>
@@ -372,12 +371,12 @@ export default function ReceiptsList() {
                           />
                           View
                         </Button>
-                        <Button variant="outline" size="sm" className="h-9 w-9 p-0">
+                        {/* <Button variant="outline" size="sm" className="h-9 w-9 p-0">
                           <Download className="h-4 w-4" />
                         </Button>
                         <Button variant="outline" size="sm" className="h-9 w-9 p-0">
                           <Edit className="h-4 w-4" />
-                        </Button>
+                        </Button> */}
                       </div>
                     </div>
                   </CardContent>

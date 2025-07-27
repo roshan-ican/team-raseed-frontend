@@ -78,10 +78,11 @@ export default function UploadReceipt() {
       if (progress >= 100) clearInterval(interval);
     }, 100);
 
-    uploadReceipt(
+    const res = uploadReceipt(
       { file, userId },
       {
         onSuccess: response => {
+          clearInterval(interval);
           const { categorization, confidence = 0.9 } = response;
 
           const items = categorization.items.map((item: any) => ({
@@ -122,7 +123,7 @@ export default function UploadReceipt() {
     onDrop,
     accept: {
       'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.webp'],
-      mp4: [''],
+      mp4: ['.mp4'],
       'application/pdf': ['.pdf'],
     },
     maxFiles: 1,
@@ -238,10 +239,11 @@ export default function UploadReceipt() {
               <CardContent className="p-4 sm:p-6">
                 <div
                   {...getRootProps()}
-                  className={`border-2 border-dashed rounded-lg p-6 sm:p-8 text-center cursor-pointer transition-colors touch-manipulation ${isDragActive
+                  className={`border-2 border-dashed rounded-lg p-6 sm:p-8 text-center cursor-pointer transition-colors touch-manipulation ${
+                    isDragActive
                       ? 'border-primary bg-primary/10'
                       : 'border-border hover:border-muted-foreground'
-                    }`}
+                  }`}
                 >
                   <input {...getInputProps()} />
                   <div className="mb-4">
@@ -324,12 +326,13 @@ export default function UploadReceipt() {
                     <span>Review Extracted Data</span>
                     {extractedData.confidence > 0 && (
                       <span
-                        className={`text-xs px-2 py-1 rounded-full mt-1 sm:mt-0 ${extractedData.confidence > 0.8
+                        className={`text-xs px-2 py-1 rounded-full mt-1 sm:mt-0 ${
+                          extractedData.confidence > 0.8
                             ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
                             : extractedData.confidence > 0.6
                               ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
                               : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                          }`}
+                        }`}
                       >
                         {Math.round(extractedData.confidence * 100)}% confidence
                       </span>
@@ -508,8 +511,8 @@ export default function UploadReceipt() {
                             // If the value is '0' and a new digit is typed, replace '0'
                             const newValue =
                               value === '0' &&
-                                e.nativeEvent instanceof InputEvent &&
-                                /^[0-9]$/.test(e.nativeEvent.data || '')
+                              e.nativeEvent instanceof InputEvent &&
+                              /^[0-9]$/.test(e.nativeEvent.data || '')
                                 ? e.nativeEvent.data || ''
                                 : value;
                             const parsedValue = parseFloat(newValue);
@@ -534,8 +537,8 @@ export default function UploadReceipt() {
                             // If the value is '0' and a new digit is typed, replace '0'
                             const newValue =
                               value === '0' &&
-                                e.nativeEvent instanceof InputEvent &&
-                                /^[0-9]$/.test(e.nativeEvent.data || '')
+                              e.nativeEvent instanceof InputEvent &&
+                              /^[0-9]$/.test(e.nativeEvent.data || '')
                                 ? e.nativeEvent.data || ''
                                 : value;
                             const parsedValue = parseFloat(newValue);

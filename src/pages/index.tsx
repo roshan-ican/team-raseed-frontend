@@ -99,11 +99,15 @@ interface CustomLabelProps {
 type TimeRange = '7days' | '30days' | '90days' | 'year';
 
 // API functions
-const fetchDashboardData = async (timeRange: TimeRange, category: string,userId:string): Promise<any> => {
+const fetchDashboardData = async (
+  timeRange: TimeRange,
+  category: string,
+  userId: string
+): Promise<any> => {
   const params = new URLSearchParams({
     timeRange,
     category: category === 'all' ? '' : category,
-    userId
+    userId,
   });
 
   const response = await axiosInstance.get(`/api/dashboard?${params}`);
@@ -142,8 +146,8 @@ const renderCustomLabel = ({
 export default function Dashboard(): JSX.Element {
   const [timeRange, setTimeRange] = useState<TimeRange>('30days');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-    const user = useUserStore(state => state.user);
-    const userId = user?.email as string;
+  const user = useUserStore(state => state.user);
+  const userId = user?.email as string;
 
   // Fetch dashboard data using React Query
   const {
@@ -153,7 +157,7 @@ export default function Dashboard(): JSX.Element {
     error,
   } = useQuery<any, Error>({
     queryKey: ['dashboard', timeRange, selectedCategory],
-    queryFn: () => fetchDashboardData(timeRange, selectedCategory,userId),
+    queryFn: () => fetchDashboardData(timeRange, selectedCategory, userId),
     staleTime: 5 * 60 * 1000, // 5 minutes
     // cacheTime: 10 * 60 * 1000, // 10 minutes
   });
@@ -551,7 +555,7 @@ export default function Dashboard(): JSX.Element {
                             {receipt.vendor}
                           </p>
                           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                            {receipt.date}
+                            {new Date(receipt.date?._seconds * 10000).toLocaleDateString()}
                           </p>
                         </div>
                       </div>

@@ -28,20 +28,20 @@ messaging.onBackgroundMessage((payload) => {
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
-  
+
 });
 
 // Manual Push Event (triggered from DevTools or other places)
-self.addEventListener("push", function(event) {
-  console.log("[Service Worker] Push Received.");
-  
-  const title = "Manual Push Test";
-  const options = {
-    body: "This was triggered from DevTools manually.",
-    // icon: "/firebase-logo.png", // Optional: add an icon here
-    
-  };
+// self.addEventListener("push", function(event) {
+//   console.log("[Service Worker] Push Received.");
 
-  // Show the manual notification
-  event.waitUntil(self.registration.showNotification(title, options));
-});
+//   const title = "Manual Push Test";
+//   const options = {
+//     body: "This was triggered from DevTools manually.",
+//     // icon: "/firebase-logo.png", // Optional: add an icon here
+
+//   };
+
+//   // Show the manual notification
+//   event.waitUntil(self.registration.showNotification(title, options));
+// });
