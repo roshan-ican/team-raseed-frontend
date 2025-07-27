@@ -9,6 +9,10 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 
 const queryClient = new QueryClient();
 
+
+
+
+
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: React.ReactNode) => React.ReactNode;
 };
