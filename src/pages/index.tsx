@@ -34,6 +34,7 @@ import {
 } from 'lucide-react';
 import axiosInstance from '@/lib/axios';
 import router from 'next/router';
+import { useUserStore } from '@/store/useUserStore';
 
 // Type definitions
 interface Receipt {
@@ -98,10 +99,11 @@ interface CustomLabelProps {
 type TimeRange = '7days' | '30days' | '90days' | 'year';
 
 // API functions
-const fetchDashboardData = async (timeRange: TimeRange, category: string): Promise<any> => {
+const fetchDashboardData = async (timeRange: TimeRange, category: string,userId:string): Promise<any> => {
   const params = new URLSearchParams({
     timeRange,
     category: category === 'all' ? '' : category,
+    userId
   });
 
   const response = await axiosInstance.get(`/api/dashboard?${params}`);
@@ -140,6 +142,8 @@ const renderCustomLabel = ({
 export default function Dashboard(): JSX.Element {
   const [timeRange, setTimeRange] = useState<TimeRange>('30days');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+    const user = useUserStore(state => state.user);
+    const userId = user?.email as string;
 
   // Fetch dashboard data using React Query
   const {
@@ -149,7 +153,7 @@ export default function Dashboard(): JSX.Element {
     error,
   } = useQuery<any, Error>({
     queryKey: ['dashboard', timeRange, selectedCategory],
-    queryFn: () => fetchDashboardData(timeRange, selectedCategory),
+    queryFn: () => fetchDashboardData(timeRange, selectedCategory,userId),
     staleTime: 5 * 60 * 1000, // 5 minutes
     // cacheTime: 10 * 60 * 1000, // 10 minutes
   });
