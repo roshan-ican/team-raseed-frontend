@@ -21,7 +21,7 @@ export default function MyProfilePage() {
         <Card className="shadow-lg bg-card text-foreground">
           <CardHeader className="flex flex-col items-center text-center space-y-4">
             <Avatar className="w-20 h-20">
-              <AvatarImage src={user?.image ?? <User2 />} alt={user?.name ?? 'User'} />
+              <AvatarImage src={user?.image as string ?? <User2 />} alt={user?.name ?? 'User'} />
               <AvatarFallback>{user?.name?.[0]}</AvatarFallback>
             </Avatar>
             <div>
