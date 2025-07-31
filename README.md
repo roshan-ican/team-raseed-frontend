@@ -67,10 +67,16 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-Live Demo
-
+Live Demo of voice query
 
 https://github.com/user-attachments/assets/25c9ef5f-8eb5-476b-a7a3-eb5eb2b010ae
+
+Live Demo of upload
+
+
+https://github.com/user-attachments/assets/06eb84cc-d415-43da-820b-3814788c4077
+
+
 
 
 
